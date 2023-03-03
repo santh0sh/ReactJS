@@ -1,0 +1,21 @@
+27-2-2023 BOA React Training:-
+
+node --version
+
+
+C:\BOAReactTraining>node --version
+v18.14.2
+
+React needs Node JS 16
+
+
+Stateless functional components -  Presentaion
+class Employee extends React.component {
+	//state={'name':'sandy'} - props{}
+}
+
+states are passed to the child component in the form of props
+
+https://codeshare.io/gL94P0,
+
+https://rpsconsulting1.webex.com/rpsconsulting1/j.php?MTID=md070a270776db710a253a217faacd5f8
