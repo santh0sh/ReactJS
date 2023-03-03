@@ -1,0 +1,9 @@
+Client requirements -> test specs - unit test code.
+
+TDD : Test Driven Development:
+1. write the test code first   - Jest /enzyme (jsDOM)
+2. Write the funtionality 
+3. Run the test  -     npm run test 
+
+calculatorActions.spec.js     
+folder : __test__

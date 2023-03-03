@@ -1,0 +1,70 @@
+Install 
+
+npm install express  express-graphql  graphql
+
+
+    nodemon:"14.1"
+
+    write server.js code
+
+npm run devstart
+
+
+localhost:5000/graphql
+
+
+query{
+    books{
+        id
+        name
+    }
+}
+
+query{
+    books{
+        author{
+            name
+        }
+    }
+}
+
+
+query{
+    authors{
+        id
+        name
+        books{
+            name
+        }
+    }
+}
+
+query{
+    author(id:2){
+        name
+    }
+}
+
+query{
+    book(id:1){
+        name
+        author{
+            name
+        }
+    }
+}
+
+inserting data:
+
+
+mutation{
+    addBook(name:"murthy",authorId:12){
+        id,
+        name
+    }
+}
+//test
+books{
+    id
+    name
+}

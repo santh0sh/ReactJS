@@ -1,0 +1,57 @@
+Typescript with React:
+-----------------------
+TypeScript is a typed superset of JavaScript that compiles to plain JavaScript
+
+visit https://typescriptlang.org
+
+
+Install yarn  : 
+  >npm install yarn
+
+Install create-react-app
+  >npm install -g create-react-app
+
+Create typescript project in React:
+ 
+  $ npx create-react-app ts-app --template typescript
+
+  or 
+
+  $ yarn create react-app ts-app --template typescript
+
+$ cd ts-app
+$ npm start
+=============================
+
+
+If you've previously installed create-react-app globally via 
+npm install -g create-react-app, we recommend t 
+uninstall the package using npm uninstall -g create-react-app to 
+ensure that npx always uses the latest version.
+
+Global installs of create-react-app are no longer supported.
+
+To add TypeScript to a Create React App project, first install it:
+
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+# or
+yarn add typescript @types/node @types/react @types/react-dom @types/jest
+
+
+Next, rename any file to be a TypeScript file (e.g. src/index.js to src/index.tsx)
+ and restart your development server!
+
+
+ - type safety
+ - intellisence in IDE`
+ - Refactor/goto definition
+ - enum,
+ - static
+ - interface (types and functions)
+ - abstract class
+ - Generics   <T> 
+ any= object
+
+ let x:any={}
+
+

@@ -1,0 +1,41 @@
+calculator:
+
+store : {
+    output:0
+}
+
+reducers:
+1. calculatorReducer
+3. TimerReducer
+
+actions:
+1. add
+2. subtract
+3. toggletimer
+
+middleware:
+1. logger
+
+container: 
+1. CalcContainer
+2. TimerContainer
+
+Presentation:
+1. App
+
+
+Test Driven Developement with Unit testing:
+TDD : Jest, Enzyme
+Code coverage
+
+TDD:
+1. Write the test code (specs, requirement) - Unit test- Jest
+2. write the functionality
+3. Run the test
+   (pass  , fail)
+
+: automatic testing: Karma
+--------------------------------
+folder name : __test__
+
+calculatorReducers.spec.js

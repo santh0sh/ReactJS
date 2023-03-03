@@ -11,6 +11,7 @@ import  createSagaMiddleware from 'redux-saga' ;
 import {watchSalaryUp} from './sagas/saga'
 import createSagaMiddleware from '@redux-saga/core';
 import reducer from './sagaApp/store/reducer';
+import {watchSalaryUp} from './sagaApp/sagas/sagawatcher';
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(reducer,applyMiddleware(sagaMiddleware))

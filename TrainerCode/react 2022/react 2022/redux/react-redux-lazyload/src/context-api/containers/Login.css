@@ -1,0 +1,36 @@
+.Login {
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
+}
+
+.Login label {
+    display: block;
+    margin: 0.6rem 0;
+}
+
+.Login input {
+    padding: 0.5rem;
+    margin-bottom: 0.6rem;
+    min-height: 40px;
+    font-size: 16px;
+    min-width: 300px;
+    border: 0;
+    border-radius: 4px;
+    background-color:yellow;
+}
+.Login button[type='submit'] {
+    width: 400px;
+    outline: 1;
+    background: #ffccff;
+    color: #fe718f;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 1.5rem;
+    border: 0;
+    box-shadow: none;
+    font-weight: bold;
+    cursor: pointer;
+}

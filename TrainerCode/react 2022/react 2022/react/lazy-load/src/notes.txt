@@ -1,0 +1,40 @@
+Lazy loading of modules/components:
+------------------------------------------
+1. use react-loadable module for lazy loading
+2. react-lazy 
+3. manullay use import command 
+    import command will  make ajax call to server and
+    download the module. (system.js)
+
+4. use-lazy
+
+npm install 
+npm install google-map-react    --legacy-peer-deps
+or npm install google-map-react --force
+
+one module = one folder = one bundle/chunk.js - blog.bundle.min.js (.2mb)
+
+module= collection of components/css/state/images
+
+
+
+HOC : higher order component
+HOF
+HOC takes your comp as parameter, add
+extra work, and return same component
+without spoiling your component state
+
+connect
+redux-saga
+
+class  fun(c,blue-pouch){
+    // ajax
+    if(condition)
+   return c with blue-puch
+   else
+     something else
+}
+
+fun((data)=>{console.log("hello"+data)}
+
+x(button,blue)

@@ -1,0 +1,18 @@
+customer table (oracle)
+{
+cid:0          <input type="number">
+cname:'',   <input type="text">
+email:'',
+address{
+      city:'Hyderabad',
+      state:''
+ }
+}
+
+bind to input boxes of html form
+no state, no ref
+
+validations: on blur (Lost focus)
+
+button disable form is valid
+

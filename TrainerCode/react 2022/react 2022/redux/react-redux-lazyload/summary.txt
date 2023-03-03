@@ -1,0 +1,8 @@
+This application contains 
+===============
+1. Component Life cycle  methods with error handling
+2. Context API with Banking application case study
+3. Fake-app for profiling  
+4. BankApp for Lazy loading and Suspense, React.memo
+5. Hooks- 4 apps.
+

@@ -1,0 +1,283 @@
+Our example app: 
+
+A grid of blocks, each with a random size, 
+arranged into a masonry layout (think Pinterest).
+
+Every couple of seconds, a new bunch of blocks load at 
+the bottom of the page, and need to be arranged.
+
+Used bricks.js library to align our grid.
+
+Mounting:
+----------
+constructor
+
+The first thing that gets called is your component constructor,
+if your component is a class component. This does not apply to functional components.
+
+Your constructor might look like so:
+class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0,
+    };
+  }
+}
+
+The constructor gets called with the component props. 
+You must call super and pass in the props.
+
+You can then initialize your state, setting the default values. 
+
+You can even base the state on the props:
+class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: props.initialCounterValue,
+    };
+  }
+}
+
+Note that using a constructor is optional, and you can initialize your state 
+like so if your Babel setup has support for class fields:
+
+class MyComponent extends Component {
+  state = {
+    counter: 0,
+  };
+}
+
+class MyComponent extends Component {
+  state = {
+    counter: this.props.initialCounterValue,
+  };
+}
+
+You may still need a constructor, though, if you need to use a ref. 
+
+Here’s an example from our grid app:
+
+class Grid extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      blocks: [],
+    };
+    this.grid = React.createRef();
+  }
+
+We need the constructor to call createRef, to create a reference to the grid element, 
+so we can pass it to bricks.js.
+
+Use of Constructor: Setting up state, creating refs and method binding.
+
+getDerivedStateFromProps
+When mounting, getDerivedStateFromProps is the last method called before rendering. 
+
+You can use it to set state according to the initial props. 
+
+Here’s the code from the example Grid component:
+static getDerivedStateFromProps(props, state) {
+  return { blocks: createBlocks(props.numberOfBlocks) };
+}
+
+Most Common Use Case For getDerivedStateFromProps (during mount): 
+Returning a state object based on the initial props.
+
+render()
+It returns the JSX of your actual component. 
+
+componentDidMount
+
+After we’ve rendered our component for the first time, this method is called.
+
+If you need to load data, here’s where you do it. 
+Don’t try to load data in the constructor or render or anything crazy. 
+
+I’ll let Tyler McGinnis explain why:
+You can’t guarantee the AJAX request won’t resolve before the component mounts. 
+If it did, that would mean that you’d be trying to setState on an unmounted 
+component, which not only won’t work, but React will yell at you for. 
+Doing AJAX in componentDidMount will guarantee that there’s a component to update.
+
+
+initialize a masonry grid layout from a collection of elements
+
+add event listeners
+
+componentDidMount() {
+    this.bricks = initializeGrid(this.grid.current);
+    layoutInitialGrid(this.bricks)
+    this.interval = setInterval(() => {
+      this.addBlocks();
+    }, 2000);
+  }
+
+We use the bricks.js library (called from the initializeGrid method) to create and arrange the grid.
+We then set an interval to add more blocks every two seconds, mimicking the loading of data. 
+You can imagine this being a loadRecommendations call or something in the real world.
+
+
+Updating
+
+getDerivedStateFromProps
+
+
+If you need to update your state based on a prop changing, you can do it here by 
+returning a new state object.
+
+Again, hanging state based on props is not recommended. It should be considered a last resort. Ask yourself—do I need to store state? Can I not just derive the right functionality from the props themselves?
+
+That said, edge cases happen. Here’s some examples:
+resetting a video or audio element when the source changes
+refreshing a UI element with updates from the server
+closing an accordion element when the contents change
+Even with the above cases, there’s usually a better way to do it. 
+But getDerivedStateFromProps will have your back when worst comes to worst.
+
+With our example app, let’s say our Grid component’s numberOfBlocks prop increases. 
+But we’ve already “loaded” past more blocks than the new amount. 
+There’s no point using the same value. So we do this:
+
+static getDerivedStateFromProps(props, state) {
+  if (state.blocks.length > 0) {
+    return {};
+  }
+  return { blocks: createBlocks(props.numberOfBlocks) };
+}
+
+shouldComponentUpdate
+
+When a component receives new props, or new state, it should update.
+
+But our component is a little bit anxious and is going to ask permission first.
+
+Here’s what we get — a shouldComponentUpdate method, called with nextProps 
+as the first argument, and nextState is the second.
+
+shouldComponentUpdate should always return a boolean — an answer to the question,
+ “should I re-render?” Yes, little component, you should. The default is that it always returns true.
+
+But if you’re worried about wasted renders and other nonsense — 
+shouldComponentUpdate is an awesome place to improve performance.
+
+shouldComponentUpdate(nextProps, nextState) {
+  // Only update if bricks change
+  return nextState.blocks.length > this.state.blocks.length;
+}
+
+getSnapshotBeforeUpdate
+
+Note it’s called between render and the updated component actually 
+being propagated to the DOM. 
+
+It exists as a last-chance-look at your component with its previous props and state.
+
+Why? Well, there may be a delay between calling render and having your changes appear. 
+
+If you need to know what the DOM is exactly at the time of integrating the result 
+of the latest render call, here’s where you can find out.
+
+Let’s say our team lead decided that if a user is at the bottom of our grid when new blocks 
+are loaded, they should be scrolled down to the new bottom of the screen.
+
+In other words: when the grid expands, if they’re at the bottom, keep them there.
+
+getSnapshotBeforeUpdate(prevProps, prevState) {
+    if (prevState.blocks.length < this.state.blocks.length) {
+      const grid = this.grid.current;
+      const isAtBottomOfGrid =
+        window.innerHeight + window.pageYOffset === grid.scrollHeight;
+      return { isAtBottomOfGrid };
+    }
+    return null;
+  }
+
+Here’s what this says: if the user has scrolled to the bottom, return an object like so: { isAtBottomOfGrid: true }. If they aren’t, return null.
+
+You should either return null or a value from getSnapshotBeforeUpdate.
+
+componentDidUpdate
+    Now, our changes have been committed to the DOM.
+
+In componentDidUpdate, we have access to three things: 
+the previous props, the previous state, and whatever value 
+we returned from getSnapshotBeforeUpdate.
+
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+  this.bricks.pack();
+  if (snapshot.isAtBottomOfGrid) {
+    window.scrollTo({
+      top: this.grid.current.scrollHeight,
+      behavior: 'smooth',
+    });
+  }
+}
+
+First, we re-layout the grid, using the Bricks.js pack method.
+
+Unmounting
+componentWillUnmount
+
+Your component is going to go away. Maybe forever. It’s very sad.
+
+Before it goes, it asks if you have any last-minute requests.
+
+Here you can cancel any outgoing network requests, or remove all event listeners associated with the component.
+
+Basically, clean up anything to do that solely involves the component in question — when it’s gone, it should be completely gone.
+In our case, we have one setInterval call from componentDidMount to tidy up:
+
+componentWillUnmount() {
+  clearInterval(this.interval);
+}
+
+Most Common Use Case for componentWillUnmount: 
+Cleaning up any leftover debris from your component.
+
+Errors
+getDerivedStateFromError
+
+Something broke.
+
+Not in your component itself, but one of its descendants.
+We want to show an error screen. The easiest way to do so is to have a value like this.state.hasError, which gets flipped to true at this point.
+
+static getDerivedStateFromError(error) {
+  return { hasError: true };
+}
+
+Note that you must return the updated state object. Don’t use this method for any side effects. Instead, use the below componentDidCatch.
+Most Common Use Case for getDerivedStateFromError: Updating state to display an error screen.
+componentDidCatch
+
+Very similar to the above, in that it is triggered when an error occurs in a child component.
+The difference is rather than updating state in response to an error, we can now perform any side effects, like logging the error.
+componentDidCatch(error, info) {
+  sendErrorLog(error, info);
+}
+
+error would be the actual error message (Undefined Variable blah blah blah ) and info would be the stack trace (In Component, in div, etc).
+Note that componentDidCatch only works for errors in the render/lifecycle methods. If your app throws an error in a click handler, it will not be caught.
+You would commonly use componentDidCatch only in special error boundary components. These components wrap a child tree with the sole purpose of catching and logging errors.
+For example, this error boundary will catch an error and render an ‘Oops!’ message instead of the child components:
+
+class ErrorBoundary extends Component {
+  state = { errorMessage: null };
+  static getDerivedStateFromError(error) {
+    return { errorMessage: error.message };
+  }
+  componentDidCatch(error, info) {
+    console.log(error, info);
+  }
+  render() {
+    if (this.state.errorMessage) {
+      return <h1>Oops! {this.state.errorMessage}</h1>;
+    }
+    return this.props.children;
+  }
+}
+Most Common Use Case for componentDidCatch: Catching and logging errors.

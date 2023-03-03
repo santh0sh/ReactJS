@@ -1,0 +1,35 @@
+Store: 
+store:{
+    input1:0,
+    input2:0,
+    output:0
+    timer:''
+}
+
+Reducers:
+1.  calculatorReducer
+2. TimerReducer
+
+Action:
+1. add
+2. subctract
+3. start/stop
+
+Middleware: 
+1. logger
+
+Containers:
+1. calculatorConatiner
+2. TimerContainer
+
+Components: (P)
+1.app
+
+
+Testing:  JEST 
+1. write the test code (specs)
+2. write functionality
+3. run (pass/fail)
+
+
+

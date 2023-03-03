@@ -1,0 +1,171 @@
+HOC vs Hooks:
+-------------
+Higher Order Function (HOF):
+
+Function that operate on other functions:
+ 
+either by taking them as argumentsor by returning them.
+It allow us to abstract over actions, not just values.
+
+const greaterThen = x => y => y > x;
+greaterThen(10)(11); // true
+const greaterThen10 = greaterThen(10);
+greaterThen10(11);   // true
+--------------------------------------------------------------------
+Higher Order Component (HOC)
+
+Component that operate on other components
+either by taking them as arguments or by returning them.
+
+For example:
+export default BaseComponent => ({ doSomething, ...rest }) => (
+  <BaseComponent onClick={doSomething} {...rest}  />
+);
+-------------------------------------------------------------------
+Render Props:
+
+A Render Prop is a function prop that a component uses to know what to render. — 
+
+They are more or less equivalent to HOCs.
+
+What is it?
+The term “render prop” refers to a simple technique for sharing code between React components using a prop whose value is a function.
+
+Components accept a prop that returns a function responsible for rendering something. This allows our component to focus on other logic.
+
+
+Render props is a powerful pattern to allow developers to share functionality between components. It enables us to keep our code DRY and extract methods into a common location
+
+What do render props do?
+Handle some or all the rendering logic for a component.
+
+Typical usage — children as a function:
+
+<Component>
+  {({ value }) => (
+    <div>{value}</div>
+  )}
+</Component>
+
+<LocalStorageProvider>
+render ={data=> <myComp info={data.mystuff}>}
+
+<DataProvider render={data => (
+  <h1>Hello {data.target}</h1>
+)}/>
+
+By using a prop to define what is rendered, the component just injects functionality without needing to know how it is being applied to the UI.
+
+The render props pattern
+Render props means that you pass a render function defined by a separate component’s props to indicate what should be returned by the shared component.
+
+When to use?
+When you’re repeating patterns/logic across components.
+
+Examples;
+Repeating UI structures
+Hooking into/subscribing to a data source
+Hooking into global events (scroll, resize etc.)
+
+
+But it’s not only about children. It’s about all props:
+
+<LoginForm
+  renderButton={(DefaultButton, buttonProps) => (
+    <DefaultButton {...buttonProps}>{value}</DefaultButton>
+  )}
+  renderInput={
+    ...
+  }
+/>
+Render Props work both in class-based and function-based components.
+
+--------------------------------------------------------------------------
+React Hooks:
+
+Hooks encapsulate the functionality to easily reusable functions:
+
+const [active, setActive] = useState(defaultActive);
+
+There are few build-in Hooks:
+import {
+  useState,
+  useReducer,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+  ...
+} from 'react'
+
+Creating custom Hooks  allows  to implement simple state management at 10 lines of code and possibly replace Redux in  app.
+
+Note: Hooks can operate inside function-based components only.
+----------------------------------------------------------------------
+
+Readability
+Reusability
+Customisation and usage
+Debugging
+Testability
+Performance
+
+
+Overall  results:
+Render Props: 21 of 25 = very good
+Hooks: 20 of 25 = very good
+HOC: 15 of 25 = good
+
+Testability summary:
+Render Props: very good
+HOC: very good
+Hooks: good
+
+Debugging summary:
+Render Props: very good
+Hooks: very good
+HOC: good
+
+Customisation and usage summary:
+Render Props: excellent
+Hooks: very good
+HOC: fair
+
+Reusability summary:
+Hooks: excellent
+HOC: excelent
+Render Props: very good
+
+Readability summary:
+Hooks: very good
+Render Props: very good
+HOC: poor
+
+
+When to use HOCs?
+
+They provide great code splitting and reusability. But they put too much abstraction to the scene which cause them very hard to read, debug and use.
+
+I would use only single HOC in a time. For example to enhance existing or third-party component with some simple feature, i.e. withTheme from Styled components. Or connect in case of Redux, etc.
+
+When to use Render Props?
+
+Render Props won our little scoring game by one point over the Hooks, so they are definitely the way to go if you want to:
+have rendering under full control,
+separate logic and rendering easily,
+write readable and clean code,
+and use class-based components for some reason.
+If you provide custom renders in your visual components, they become perfectly customisable.
+
+When to use Hooks?
+
+React Hooks are the newest concept out of those three. 
+
+They are great if you want to:
+separate logic and rendering,
+avoid nesting and verbose syntax of Render Props,
+write readable and highly reusable code.
+They will be your way to go if you love functional programming, because Hooks work in function-based components only.
+But be careful about performance and use the Hooks wisely in a way they were designed to use.
+They are perfect for all non-visual features like events, data fetching, DOM manipulation, component lifecycles, etc.
+--------------------------------------------------------------------------------

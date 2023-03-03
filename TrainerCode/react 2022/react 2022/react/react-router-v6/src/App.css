@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+button {
+  color: #61dafb;
+  background-color: #282c34;
+  border: none;
+  text-decoration: none;
+  font-size: calc(6px + 2vmin);
+  cursor: pointer;
+  padding-bottom: 10px;
+}
+
+button.user-link {
+  color: violet;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.link {
+  color: #fbf861;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.separator {
+  color: #fbf861;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+}

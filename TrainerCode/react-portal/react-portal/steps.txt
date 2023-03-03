@@ -1,0 +1,31 @@
+Portals are defined as 
+“a first-class way to render children into a DOM node 
+that exists outside the DOM hierarchy of the parent component”. 
+
+This becomes useful for rendering things like 
+tooltips, modals, chat widgets and other components 
+that might need to overflow from the root component.
+
+
+in index.html of public folder , add mount point.
+i.e.  <div id="portal"/> to hold the portal.
+
+Create PageOne,PageTwo and PageThree
+for routing.
+
+add css in index.css
+
+
+Open MusicPlayer.js and see the code.
+This will be child component rendered on portal.
+Here render method returns ReactDOM.renderPortal().
+
+Open index.js which brings everything together.
+Main.js component  contains main application in BrowserRouter
+and MusicComponent rendered outside BrowserRouter.
+
+Here we created a changing state variable time and we 
+pass it to the MusicPlayer child component as a prop, 
+if you run the application you will notice that the 
+changes in the state are reflected in the portal component.
+

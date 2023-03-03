@@ -1,0 +1,6 @@
+This application is enhaced to use 
+
+1. React-Fragment
+2. React.memo  (pure component)
+3. ContextType
+4. Profiling

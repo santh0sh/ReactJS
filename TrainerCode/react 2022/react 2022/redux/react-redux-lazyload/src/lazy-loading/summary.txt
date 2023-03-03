@@ -1,0 +1,177 @@
+Features used in this app:
+---------------------------
+1. React.memo for performance
+2. React.Lazy and Suspense   for scalability
+3. React.Fragment
+4. Context API 
+5. Profiling supported.
+6. Conditional Rendering
+
+
+
+What is Lazy Loading?
+
+defer the loading of those until the user actually consumes (eg: clicks button) 
+
+When we bundle application, entire application bundled in one large chunk.
+As your app grows, so does the bundle.
+
+import { myModule } from 'awesome-module' is static loading.
+
+We need dynamic loading  of module at runtime. (Lazy loading)
+
+Syntax:
+import('path-to-awesome-module')
+
+
+React.lazy and Suspense make using 
+dynamic imports in a React application
+
+
+// before import Scene from './Scene'
+// now const Scene = React.lazy(() => import('./Scene'))
+
+Suspense component to show a fallback for 
+when the resource is being fetched.
+
+Error handling:
+
+import { Suspense } from 'react'
+import MyErrorBoundary from './MyErrorBoundary'
+const Scene = React.lazy(() => import('./Scene'))
+class Game extends Component {  
+    state = {    startGame: false  }
+    render () {   
+         return <MyErrorBoundary>  
+                {!this.state.startGame ?      
+                      <GameInstructions /> :
+                       		   <Suspense fallback="loading ...">
+           		                   <Scene />;
+                        	</Suspense>
+                            }
+        		</MyErrorBoundary>  }
+                }
+export default Game;
+
+Now, if an error occurs while fetching the lazy loaded resource, 
+it’ll be graciously handled by the error boundary.
+
+Lazy loaded Routes:
+
+lazy load the route components
+const Home = React.lazy(() => import('./Home'))
+const About = React.lazy(() => import('./About'))
+// Provide a fallback with Suspense
+const App = () => (  
+    <Router>;
+    <Suspense fallback={<div>Loading...</div>}>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+         <Route path="/about" component={About}/>
+       </Switch>    
+    </Suspense>
+   </Router>);
+
+
+using react-loadable is best bet for lazy loading React components.
+
+Profiling:
+--------
+To measure performance and identify performance bottlenecks 
+in your app, inspect how long it took  app’s components to render, 
+and why they were rendered using PROFILER.
+
+With the Profiler, you can:
+•	Collect timing information about each component
+•	Easily identify performance bottlenecks
+•	Be sure to have a tool compatible with concurrent rendering
+
+Run the application and open Chrome Debugger (RC-inspect)
+
+Click React chrome Devtools extension tab.
+
+click Profiler.
+
+
+The Profiler works by recording a session of actual usage
+ of application. 
+
+In this recording session it gathers information 
+about the components in your application and 
+displays some interesting information to exploit and
+ find performance bottlenecks.
+
+Click on Record circle and click clap button 3 times
+ and stop recording.
+
+React does work in 2 phases. 
+1. The render phase where components are rendered 
+   and the virtual DOM diffed,
+2. commit phase where actual changes in the virtual DOM 
+   are committed to the  DOM.
+
+The graphical representation on the far right of the profiler 
+represents the number of commits that were made 
+to the DOM during interaction with the app
+
+The taller the bar is, the longer it took React to 
+render the components in this commit.  (eg. Provider    )
+
+The Flame Chart.
+After a successful recording session,couple of  different 
+bits of information about  components.
+
+We have 3 tabs representing different groups of information — 
+each relating to the selected commit on the right.
+
+A yellow bar means the component took the 
+most time to render in this commit.
+
+The ranked chart displays every component that was rendered 
+in the commit being viewed. It displays this components ranked 
+from top to bottom —  with component which took more time to 
+render at the top.
+
+Tracing:
+
+Interactions let  tag actions performed during a recording session
+ with a string identifier so they can be monitored and tracked within 
+ the profiling results.
+
+The API for this is unstable, but here’s how to enable interactions 
+in your profiling results.
+
+First install the scheduler module. 
+
+From your terminal, run 
+$ yarn add scheduler 
+.
+Once the installation is done, use unstable_trace function 
+exported by the module as shown below:
+
+import { unstable_trace as trace } from 'scheduler/tracing'
+
+
+The trace function has a signature similar to this:
+
+trace("string identifier", timestamp, () = {})
+
+It takes a string identifier, timestamp and a callback function. 
+
+Track whatever interaction we want by passing it into the callback.
+
+For example, I have gone ahead to do this in the fake-medium application:
+// before _handleClick () {   // do something}
+// after _handleClick () {   trace("Clap was clicked!", window.performace.now(), () => {  	  // do something   })}
+
+The medium clap when clicked calls the _handleClick method. 
+Now, I’ve wrapped the functionality within the trace method.
+
+Clicking three times now records 3 interactions and you can 
+click on any of the interactions to view more details about them.
+
+Oberve 3 times, Clap was clicked!
+
+
+
+

@@ -1,0 +1,46 @@
+
+.App-link {
+  color: #61dafb;
+}
+
+.App-chat {
+  min-width: 400px;
+}
+
+/**
+  chat
+**/
+.chat-thread {
+  padding: 0 20px 0 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: calc(100vh - 50px);
+}
+
+.chat-bubble {
+  position: relative;
+  background-color: rgba(25, 147, 147, 0.2);
+  padding: 16px 40px 16px 20px;
+  margin: 0 0 20px 0;
+  border-radius: 10px;
+}
+
+.chat-bubble:nth-child(n) {
+  margin-right: auto;
+}
+
+.chat-btn {
+  padding: 5px;
+  margin: 0 0 0 10px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

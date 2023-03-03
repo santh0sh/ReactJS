@@ -1,0 +1,102 @@
+
+@import "~/src/css/bootstrap.css";
+body{
+background:lightgray;
+ margin:15px;
+ font:helv;
+ }
+ .bgblack{
+   background:black;
+   color:yellow;
+ }
+ .bgblue{
+   background:blue;
+   color:orange;
+ }
+
+ .demoForm {
+	width: 500px;
+  margin: auto;
+  text-align:left
+}
+.bottom {
+   background:darkgray;
+     position:absolute;
+     top:20px;
+     right:40px;
+   display:block;
+   text-align:center;
+   border-radius:125px;
+   font-weight: bold;
+   box-shadow: 5px 5px 5px blue;
+   width:190px;
+}
+.top {
+     background:black;
+     color:white;
+   display:block;
+   text-align:center;
+   border:0 solid white;
+   border-radius:15px;
+   font-weight: bold;
+   box-shadow: 5px 5px 5px orange
+}
+.auth{
+  background:white;
+    text-align:right;
+    border-radius:5px;
+   color:pink;
+  }
+span a:hover{
+   background:orange;
+ border-radius:10px;
+}
+aside{
+ float:left;
+ margin-top:-10px;
+ width: 250px;
+   border:1px black;
+   background:black;
+ border-radius:15px;
+
+}
+aside a{
+   display:block;
+   background:white;
+   margin:10px;
+   border:1px solid;
+   border-radius:25px;
+   padding:5px;
+
+}
+aside a:hover{
+   background:orange;
+   
+}
+.main{
+  position:absolute;
+  top:110px;
+  left:20px;
+  text-align:center;
+  background:white;
+  display:block;
+  width:1330px;
+  border-radius:10px;
+  box-shadow:5px 5px 5px black;
+
+}
+.content{
+  background:gainsboro;
+  position:absolute;
+  top:120;
+  left:300px;
+  display:block;
+  border:1px solid blue;
+  border-radius:5px;
+  width:980px;
+}
+section{
+              
+ padding: 20px;
+ text-align: center;             
+}

@@ -1,0 +1,36 @@
+
+
+
+.customCard {
+    width: 560px;
+    background-color: #2b2d42;
+    font-weight: bold;
+    color: white;
+    -webkit-box-shadow: 14px 17px 25px -23px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 14px 17px 25px -23px rgba(0, 0, 0, 1);
+    box-shadow: 14px 17px 25px -23px rgba(0, 0, 0, 1);
+  }
+  
+  .cardHeader {
+    text-align: left;
+    padding: 10px 0px 0px 10px;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .cardContentClass {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .content {
+    width: 360px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  button{
+      font-size: 20px;
+  }

@@ -1,0 +1,35 @@
+// React and Redux architecture
+store state tree:
+initialState={
+    output:0
+}
+
+Reducer:
+1. calculator_reducer  ()
+
+
+Actions:
+1. add() 2. sub() 
+
+Middleware: logger,composewithDevTools
+
+containers:
+1. calc_container
+2. timerContainer
+
+Presentations:
+1: presentation (Button)
+
+Unit testing: jest
+
+
+Unit Testing: reducer,store,action,container,comp,middleware........
+
+TDD: 
+1. write the test code : JEST 
+2. write the functionity 
+3. run the test (pass / fail)
+
+
+
+

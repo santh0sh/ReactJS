@@ -1,0 +1,32 @@
+button,
+.button {
+	margin-bottom: 0 !important;
+	margin-right: .5rem;
+}
+.heading{
+	background-color:gold;
+	color:blue;
+	text-align:center;
+	border: 1px;
+	border-radius:30px;
+}
+
+h3{
+	background-color:grey;
+	color:greenyellow;
+	text-align:center;
+	border: 1px;
+	border-radius:30px;
+
+}
+
+.box{
+	background-color:lightgoldenrodyellow;
+	border: 1px;
+	border-radius:20px;
+}
+.rbox{
+	background-color:lightcyan;
+	border: 1px;
+	border-radius:20px;
+}

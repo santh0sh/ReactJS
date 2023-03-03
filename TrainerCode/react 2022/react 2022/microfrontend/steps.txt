@@ -1,0 +1,18 @@
+
+Goto micro-frontend-react  folder in DOS prompt
+
+npm install
+
+Start the app
+    c:\..>npm run build
+    c:\..>npm start
+
+Visit the following URLS:
+# renders both apps
+http://localhost:8080/
+
+# renders only react
+http://localhost:8080/react
+
+# renders only vue
+http://localhost:8080/vue

@@ -1,0 +1,16 @@
+Deployment steps:
+
+1. remove console.log statements
+2. remove redux-logger and compose-Devtools middleware
+3. Test the project for production by removing 
+   unused components and un-reachable code
+4. Build : $ npm run build.
+
+observe build folder in the project.
+
+5. add .gitignore and specify unwanted modules in GIT.
+6. git add build resources.
+7. git push    and commit.
+8. take project from git and use in apache server or IIS server in wwwroot
+or in azure cloud virtual directory.
+9. integrate Jenkins for CICD.

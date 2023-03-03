@@ -1,0 +1,19 @@
+Clone the repo
+git clone https://github.com/dabit3/micro-frontend-example.git
+Install dependencies
+yarn
+
+# or
+
+npm install
+Start the app
+npm start
+Visit the following URLS:
+# renders both apps
+http://localhost:8080/
+
+# renders only react
+http://localhost:8080/react
+
+# renders only vue
+http://localhost:8080/vue

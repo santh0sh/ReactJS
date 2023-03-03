@@ -1,0 +1,58 @@
+27-2-2023 BOA React Training:-
+
+node --version
+
+
+C:\BOAReactTraining>node --version
+v18.14.2
+
+React needs Node JS 16
+
+
+Stateless functional components -  Presentaion
+class Employee extends React.component {
+	//state={'name':'sandy'} - props{}
+}
+
+states are passed to the child component in the form of props
+
+https://codeshare.io/gL94P0,
+
+https://rpsconsulting1.webex.com/rpsconsulting1/j.php?MTID=md070a270776db710a253a217faacd5f8
+
+
+
+PFB : Post test link for React JS training
+
+ 
+
+https://app.mymapit.in/code4/tiny/hUxYti
+
+ 
+
+Feedback link :
+
+ 
+
+https://tcheck.co/2HK885
+
+
+
+
+React & Redux material link (google drive):
+
+https://drive.google.com/drive/folders/1qKSuYnVDHT_8hKCllsJetwvdumAOgd-t?usp=sharing
+
+
+
+Material contains:
+--------------------
+slides and PDF's with steps
+All demos what we have done Plus other demos
+500 interview questions (paragraph based Q and A)
+
+You can reach me at :
+98480 11641 for any suggestions ........
+
+Mailid : dsrmurthysoftware@gmail.com 
+
